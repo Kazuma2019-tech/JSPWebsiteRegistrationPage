@@ -48,17 +48,17 @@ public class RegistrationController extends HttpServlet {
                 // loads mysql driver
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/enterprisedevelopment?autoReconnect=TRUE&useSSL=FALSE", "root", "");
             
-                PreparedStatement ps = con.prepareStatement("INSERT INTO registrationpagetable(user_name, password, age, email, Phone_no)VALUES(?,?,?,?,?)"); // generates sql query
+                PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO registrationpagetable(user_name, password, age, email, Phone_no)VALUES(?,?,?,?,?)"); // generates sql query
 
-                ps.setString(1, name);
-                ps.setString(2, pass);
-                ps.setString(3, age);
-                ps.setString(4, Email);
-                ps.setString(5, Phone);
+                preparedStatement.setString(1, name);
+                preparedStatement.setString(2, pass);
+                preparedStatement.setString(3, age);
+                preparedStatement.setString(4, Email);
+                preparedStatement.setString(5, Phone);
 
-                ps.executeUpdate(); // execute it on test database
+                preparedStatement.executeUpdate(); // execute it on test database
                 
-                ps.close();
+                preparedStatement.close();
                 con.close();
             } 
             catch (ClassNotFoundException | SQLException e) {
